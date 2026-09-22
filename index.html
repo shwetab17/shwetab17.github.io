@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shweta Bagul — Lead Cloud &amp; Platform Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#0a0c10;
+    --bg-panel:#10141a;
+    --border-line:#232935;
+    --text-primary:#d7dce3;
+    --text-muted:#7c8695;
+    --accent:#d99a3f;
+    --accent-dim:#8a6a3a;
+    --link:#7db8c9;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg-void);
+    color:var(--text-primary);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--link); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .wrap{max-width:780px; margin:0 auto; padding:0 24px 100px;}
+
+  /* ---- terminal window header ---- */
+  .term{
+    margin-top:56px;
+    border:1px solid var(--border-line);
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--bg-panel);
+  }
+  .term-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 14px;
+    border-bottom:1px solid var(--border-line);
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-muted);
+  }
+  .term-dot{width:10px; height:10px; border-radius:50%; background:#333c47;}
+  .term-path{margin-left:8px;}
+  .term-body{padding:36px 32px 32px;}
+
+  .name{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:clamp(28px,5vw,40px);
+    color:var(--text-primary);
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .cursor{
+    display:inline-block; width:10px; height:1em; background:var(--accent);
+    margin-left:4px; vertical-align:-2px;
+    animation:blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .title{
+    font-family:var(--mono);
+    font-size:15px;
+    color:var(--accent);
+    margin:0 0 18px;
+  }
+
+  .pitch{
+    font-size:16.5px;
+    color:var(--text-primary);
+    max-width:60ch;
+    margin:0 0 22px;
+  }
+
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:18px;
+    font-family:var(--mono);
+    font-size:13.5px;
+    color:var(--text-muted);
+  }
+  .contact-row a{color:var(--text-muted);}
+  .contact-row a:hover{color:var(--link);}
+
+  /* ---- stats strip ---- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    margin-top:28px;
+    border-top:1px solid var(--border-line);
+  }
+  .stat{
+    padding:20px 16px 4px;
+    border-right:1px solid var(--border-line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat-num{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:clamp(17px,2.6vw,22px);
+    color:var(--accent);
+    display:block;
+    line-height:1.2;
+  }
+  .stat-label{
+    font-size:12.5px;
+    color:var(--text-muted);
+    margin-top:4px;
+    display:block;
+  }
+
+  /* ---- section scaffolding ---- */
+  section{margin-top:64px;}
+  .section-head{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:var(--mono);
+    margin-bottom:24px;
+  }
+  .prompt{color:var(--accent); font-weight:600;}
+  .section-title{
+    font-size:15px;
+    color:var(--text-primary);
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .section-rule{
+    flex:1; height:1px; background:var(--border-line);
+  }
+
+  /* ---- experience ---- */
+  .role{
+    border:1px solid var(--border-line);
+    border-radius:8px;
+    background:var(--bg-panel);
+    padding:28px 28px 8px;
+    margin-bottom:22px;
+  }
+  .role-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    flex-wrap:wrap; gap:8px 16px;
+    margin-bottom:6px;
+  }
+  .role-title{font-weight:600; font-size:17px; color:var(--text-primary);}
+  .role-company{color:var(--accent); font-weight:500;}
+  .role-dates{
+    font-family:var(--mono); font-size:13px; color:var(--text-muted);
+    white-space:nowrap;
+  }
+  .role-scope{color:var(--text-muted); font-size:14.5px; margin:8px 0 18px; max-width:64ch;}
+
+  .subhead{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--text-muted);
+    text-transform:lowercase;
+    margin:20px 0 10px;
+  }
+  ul.plain{margin:0 0 4px; padding-left:18px;}
+  ul.plain li{margin-bottom:7px; font-size:14.5px;}
+
+  .case{
+    border-left:2px solid var(--border-line);
+    padding:2px 0 18px 18px;
+    margin-bottom:18px;
+  }
+  .case-title{font-weight:600; font-size:15px; color:var(--text-primary); margin-bottom:6px;}
+  .case-body{font-size:14.5px; color:var(--text-primary); margin-bottom:10px;}
+  .tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-family:var(--mono); font-size:11.5px; color:var(--text-muted);
+    border:1px solid var(--border-line); border-radius:4px;
+    padding:2px 7px;
+  }
+
+  .role-past{
+    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    padding:16px 0; border-top:1px solid var(--border-line);
+  }
+  .role-past:first-of-type{border-top:none;}
+  .rp-left{max-width:66ch;}
+  .rp-title{font-weight:600; font-size:14.5px;}
+  .rp-company{color:var(--text-muted); font-size:13.5px;}
+  .rp-desc{font-size:13.5px; color:var(--text-muted); margin-top:5px;}
+  .rp-dates{font-family:var(--mono); font-size:12.5px; color:var(--text-muted); white-space:nowrap;}
+
+  /* ---- skills ---- */
+  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px 40px;}
+  .skill-cat-label{font-family:var(--mono); font-size:12.5px; color:var(--accent); margin-bottom:6px;}
+  .skill-cat-items{font-size:14px; color:var(--text-muted);}
+
+  /* ---- certs / education ---- */
+  .cert-list{display:flex; flex-direction:column; gap:0;}
+  .cert{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:13px 0; border-top:1px solid var(--border-line);
+  }
+  .cert:first-child{border-top:none;}
+  .cert-name{font-size:14.5px;}
+  .cert-year{font-family:var(--mono); font-size:12.5px; color:var(--text-muted);}
+
+  footer{
+    margin-top:70px;
+    padding-top:24px;
+    border-top:1px solid var(--border-line);
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-muted);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:640px){
+    .stats{grid-template-columns:1fr 1fr;}
+    .stat{border-bottom:1px solid var(--border-line);}
+    .skills-grid{grid-template-columns:1fr;}
+    .term-body{padding:28px 20px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cursor{animation:none; opacity:1;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="term">
+    <div class="term-bar">
+      <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+      <span class="term-path">shweta@cloud:~$ whoami</span>
+    </div>
+    <div class="term-body">
+      <h1 class="name">Shweta Bagul<span class="cursor"></span></h1>
+      <p class="title">Lead Cloud &amp; Platform Engineer</p>
+      <p class="pitch">12+ years building and operating production cloud infrastructure — the last several spent making a multi-region AWS platform faster to provision, cheaper to run, and safer to patch, without slowing anyone down to get there.</p>
+      <div class="contact-row">
+        <a href="mailto:shwetabagul17@gmail.com">shwetabagul17@gmail.com</a>
+        <span>+91 7208456934</span>
+        <a href="https://linkedin.com/in/shweta-bagul-7915073a" target="_blank" rel="noopener">linkedin.com/in/shweta-bagul-7915073a</a>
+        <span>Pune, India</span>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num">7-8wks → 15d</span>
+          <span class="stat-label">environment provisioning</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">15-20d → hrs</span>
+          <span class="stat-label">environment teardown</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">~$80K/yr</span>
+          <span class="stat-label">AWS cost savings</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">7 acct · 4 rgn</span>
+          <span class="stat-label">platform footprint</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head">
+      <span class="prompt">&gt;</span><span class="section-title">experience</span>
+      <span class="section-rule"></span>
+    </div>
+
+    <div class="role">
+      <div class="role-head">
+        <div>
+          <span class="role-title">Lead Cloud &amp; Platform Engineer</span> ·
+          <span class="role-company">Mastercard / SessionM</span>
+        </div>
+        <span class="role-dates">Jul 2021 — May 2026</span>
+      </div>
+      <p class="role-scope">Led a 5-engineer CloudOps team across EU, APAC, and US operating a multi-region, multi-tenant AWS platform for 20+ enterprise customers — spanning provisioning, reliability, cost, security, and patch lifecycle.</p>
+
+      <div class="subhead">key accomplishments</div>
+      <ul class="plain">
+        <li>Led a distributed CloudOps team of 5 engineers across multiple geographies.</li>
+        <li>Supported a multi-region, multi-tenant AWS platform serving enterprise customers.</li>
+        <li>Managed infrastructure spanning 7 AWS accounts and 4 regions.</li>
+        <li>Drove modernization, security, infrastructure, and operational initiatives across multiple stakeholders.</li>
+        <li>Acted as a technical lead and force multiplier beyond the immediate CloudOps team.</li>
+      </ul>
+
+      <div class="subhead">case studies</div>
+
+      <div class="case">
+        <div class="case-title">Environment standup automation</div>
+        <p class="case-body">Led the modernization of the environment provisioning process for the platform. Automated infrastructure and deployment workflows to eliminate manual coordination, cutting provisioning lead time from 7-8 weeks to roughly 15 days.</p>
+        <div class="tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">IaC</span><span class="tag">CI/CD</span></div>
+      </div>
+
+      <div class="case">
+        <div class="case-title">Environment teardown automation</div>
+        <p class="case-body">Designed automation to systematically identify and remove environment-specific infrastructure and dependencies. Reduced teardown from a multi-week coordination exercise to a process completing within hours, while preventing orphaned AWS resources.</p>
+        <div class="tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Cost Optimization</span><span class="tag">DevOps</span></div>
+      </div>
+
+      <div class="case">
+        <div class="case-title">AWS cost optimization</div>
+        <p class="case-body">Reviewed infrastructure and consumption patterns across the platform, identifying savings through Reserved Instances, EBS gp2→gp3 migration, and cleanup of unused EIPs, volumes, EC2, EMR, and Kinesis resources. Implemented and coordinated the changes to deliver approximately $80K in annualized savings.</p>
+        <div class="tags"><span class="tag">FinOps</span><span class="tag">AWS</span><span class="tag">Infrastructure</span></div>
+      </div>
+
+      <div class="case">
+        <div class="case-title">Legacy AMI / ECS node patching</div>
+        <p class="case-body">Addressed the operational risk of outdated AMIs across ECS infrastructure with an automated remediation workflow. SQS and Lambda coordinated node draining and replacement, letting workloads transition safely while cutting repetitive operational work.</p>
+        <div class="tags"><span class="tag">ECS</span><span class="tag">Lambda</span><span class="tag">SQS</span><span class="tag">Reliability</span></div>
+      </div>
+
+      <div class="case">
+        <div class="case-title">Certificate renewal automation</div>
+        <p class="case-body">Automated the certificate lifecycle against a self-hosted ADCS (Certificate Authority), removing manual tracking and last-minute renewal fire drills. EventBridge and CloudWatch triggered renewal workflows on schedule, Python handled issuance and rotation, GitLab CI deployed the change, and Jira tracked every renewal for audit visibility.</p>
+        <div class="tags"><span class="tag">ADCS</span><span class="tag">Python</span><span class="tag">EventBridge</span><span class="tag">CloudWatch</span><span class="tag">GitLab CI</span><span class="tag">Jira</span></div>
+      </div>
+
+      <div class="case">
+        <div class="case-title">Private CDN caching layer</div>
+        <p class="case-body">Built a private caching layer in front of an S3 backend using CloudFront, reducing origin load and latency for internal consumers while keeping the origin bucket locked down rather than public.</p>
+        <div class="tags"><span class="tag">CloudFront</span><span class="tag">S3</span><span class="tag">AWS</span></div>
+      </div>
+
+      <div class="subhead">core responsibilities</div>
+      <ul class="plain">
+        <li>AWS infrastructure and platform operations; production reliability and incident management.</li>
+        <li>Infrastructure as Code; CI/CD and deployment automation.</li>
+        <li>Security and compliance initiatives; cloud cost optimization.</li>
+        <li>Environment lifecycle management; AMI and patch lifecycle.</li>
+        <li>Observability and alerting; cross-team technical leadership and stakeholder coordination.</li>
+      </ul>
+
+      <div class="subhead">stack</div>
+      <div class="tags" style="margin-bottom:22px;">
+        <span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">GitLab CI</span><span class="tag">Puppet Enterprise</span><span class="tag">Packer</span><span class="tag">ECS</span><span class="tag">EC2</span><span class="tag">RDS/Aurora</span><span class="tag">ElastiCache/Redis</span><span class="tag">RabbitMQ</span><span class="tag">Lambda</span><span class="tag">SQS</span><span class="tag">DynamoDB</span><span class="tag">KMS</span><span class="tag">Vault</span><span class="tag">SSM</span><span class="tag">CloudWatch</span><span class="tag">SignalFx</span><span class="tag">PagerDuty</span><span class="tag">Okta</span><span class="tag">Active Directory</span><span class="tag">Palo Alto</span><span class="tag">GWLB</span><span class="tag">Artifactory</span><span class="tag">OPA</span><span class="tag">Black Duck</span><span class="tag">EventBridge</span><span class="tag">CloudFront</span><span class="tag">Jira</span><span class="tag">ADCS</span>
+      </div>
+    </div>
+
+    <div class="role" style="padding-bottom:4px;">
+      <div class="role-past">
+        <div class="rp-left">
+          <div class="rp-title">Project Lead</div>
+          <div class="rp-company">Larsen &amp; Toubro Infotech (LTI), Pune</div>
+          <div class="rp-desc">Built a Python-based incident/ops platform integrating Jira, ServiceNow, and TeamCity; ran Docker Swarm production environments serving ~1,000 users.</div>
+        </div>
+        <span class="rp-dates">Sep 2020 — Dec 2020</span>
+      </div>
+      <div class="role-past">
+        <div class="rp-left">
+          <div class="rp-title">DevOps Engineer</div>
+          <div class="rp-company">ValueAdd Softtech &amp; Systems Pvt. Ltd., Pune</div>
+          <div class="rp-desc">Built CI/CD pipelines (Terraform, Docker, Jenkins) for Java, Node.js, React, Angular, and Golang applications; integrated SonarQube with Bamboo.</div>
+        </div>
+        <span class="rp-dates">Oct 2017 — Sep 2020</span>
+      </div>
+      <div class="role-past">
+        <div class="rp-left">
+          <div class="rp-title">Application Developer</div>
+          <div class="rp-company">IBM India Pvt. Ltd., Pune</div>
+          <div class="rp-desc">CRM configuration and automated batch-processing workflows; Jenkins-integrated nightly data processing.</div>
+        </div>
+        <span class="rp-dates">Aug 2012 — May 2017</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <span class="prompt">&gt;</span><span class="section-title">skills</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-cat-label">cloud &amp; compute</div>
+        <div class="skill-cat-items">AWS (EKS, ECS, EC2, Lambda, RDS/Aurora, S3, IAM, VPC, CloudFront, EventBridge), Docker, Docker Swarm</div>
+      </div>
+      <div>
+        <div class="skill-cat-label">infra as code &amp; ci/cd</div>
+        <div class="skill-cat-items">Terraform, GitLab CI/CD, Jenkins, Packer, Puppet Enterprise</div>
+      </div>
+      <div>
+        <div class="skill-cat-label">data &amp; messaging</div>
+        <div class="skill-cat-items">DynamoDB, ElastiCache/Redis, RabbitMQ, SQS, RDS/Aurora</div>
+      </div>
+      <div>
+        <div class="skill-cat-label">security &amp; identity</div>
+        <div class="skill-cat-items">KMS, Vault, SSM, Okta, Active Directory, Palo Alto, OPA, Black Duck</div>
+      </div>
+      <div>
+        <div class="skill-cat-label">observability &amp; ops</div>
+        <div class="skill-cat-items">CloudWatch, SignalFx, PagerDuty, incident response &amp; on-call ownership</div>
+      </div>
+      <div>
+        <div class="skill-cat-label">leadership</div>
+        <div class="skill-cat-items">Distributed team leadership, stakeholder coordination, cross-team technical direction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-head">
+      <span class="prompt">&gt;</span><span class="section-title">certifications</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="cert-list">
+      <div class="cert"><span class="cert-name">Certified Kubernetes Administrator (CKA)</span><span class="cert-year">2026</span></div>
+      <div class="cert"><span class="cert-name">AWS Certified Solutions Architect – Associate</span><span class="cert-year">2026</span></div>
+      <div class="cert"><span class="cert-name">AWS Certified AI Practitioner</span><span class="cert-year">2026</span></div>
+      <div class="cert"><span class="cert-name">HashiCorp Certified: Terraform Associate</span><span class="cert-year"></span></div>
+      <div class="cert"><span class="cert-name">OCI Architect Professional</span><span class="cert-year"></span></div>
+      <div class="cert"><span class="cert-name">OCI Security Associate</span><span class="cert-year"></span></div>
+      <div class="cert"><span class="cert-name">OCI Cloud Operations Associate</span><span class="cert-year"></span></div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-head">
+      <span class="prompt">&gt;</span><span class="section-title">education</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="cert-list">
+      <div class="cert"><span class="cert-name">M.Tech, Computer Engineering — Veermata Jijabai Technological Institute (VJTI), University of Mumbai</span><span class="cert-year">2012</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Shweta Bagul — Pune, India</span>
+    <span>Last updated Sep 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
